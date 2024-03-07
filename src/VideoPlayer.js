@@ -122,89 +122,86 @@ const VideoPlayer = ({ videoData }) => {
   return (
     <div className="video-player">
       <div className="video-player_Progress1">
-        
-
         <div className="video-container">
           <div className="video">
-            
-          <div className="progress-bar">
-          <div
-            className="progress"
-            style={{
-              width: `${(currentTime / duration) * 100}%`,
-            }}
-          />
-        </div>
-
-            <video
-              ref={videoRef}
-              className="video"
-              autoPlay={isPlaying}
-              loop
-              muted={isMuted}
-              src={videoData?.source}
-              type="video/mp4"
-            />
-
-            <div className="form">
-                <div className="time text" title="time">
-                    {formatTime(currentTime)} / {formatTime(duration)}
+            <div className="progress-bar">
+              <div
+                className="progress"
+                style={{
+                  width: `${(currentTime / duration) * 100}%`,
+                }}
+              />
+            </div>
+            <div style={{ position: "relative" }}>
+              <video
+                ref={videoRef}
+                className="video"
+                autoPlay={isPlaying}
+                loop
+                muted={isMuted}
+                src={videoData?.source}
+                type="video/mp4"
+              />
+              <div className="controls2">
+              <button onClick={handlePlayPause} className="control-buttons">
+                {isPlaying ? (
+                  <CiPause1 fontSize={"35"} />
+                ) : (
+                  <CiPlay1 fontSize={"35"} />
+                )}
+              </button>
+              <button
+                onClick={handleScrollUp}
+                className="control-buttons"
+                title="Scroll Up"
+              >
+                <CiCircleChevUp fontSize={"35"} />
+              </button>
+              <button
+                onClick={handleScrollDown}
+                className="control-buttons"
+                title="Scroll Down"
+              >
+                <CiCircleChevDown fontSize={"35"} />
+              </button>
+              <button
+                onClick={handleHeartClick}
+                className="control-buttons"
+                title="Like"
+              >
+                <CiHeart
+                  color={isHeartFilled ? "red" : "currentColor"}
+                  fontSize={"35"}
+                />
+              </button>
+              <button
+                onClick={handleMuteClick}
+                className="control-buttons"
+                title="Mute"
+              >
+                {isMuted ? (
+                  <CiVolumeMute fontSize={"35"} />
+                ) : (
+                  <CiVolumeHigh fontSize={"35"} />
+                )}
+              </button>
+            </div>
+              <div className="form">
+                <div className="name text" title="name">
+                  {name}
                 </div>
                 <div className="title text" title="title">
-                    {title}
+                  {title}
                 </div>
-                <div className="name text" title="name">
-                    {name}
+                <div className="time text" title="time">
+                  {formatTime(currentTime)} / {formatTime(duration)}
+                </div>
                 </div>
             </div>
 
+            
           </div>
         </div>
-      </div>
-
-      <div className="controls2">
-          <button onClick={handlePlayPause} className="control-buttons">
-            {isPlaying ? (
-              <CiPause1 fontSize={"35"} />
-            ) : (
-              <CiPlay1 fontSize={"35"} />
-            )}
-          </button>
-        <button
-          onClick={handleScrollUp}
-          className="control-buttons"
-          title="Scroll Up"
-        >
-          <CiCircleChevUp fontSize={"35"} />
-        </button>
-        <button
-          onClick={handleScrollDown}
-          className="control-buttons"
-          title="Scroll Down"
-        >
-          <CiCircleChevDown fontSize={"35"} />
-        </button>
-        <button
-          onClick={handleHeartClick}
-          className="control-buttons"
-          title="Like"
-        >
-          <CiHeart
-            color={isHeartFilled ? "red" : "currentColor"}
-            fontSize={"35"}
-          />
-        </button>
-        <button
-          onClick={handleMuteClick}
-          className="control-buttons"
-          title="Mute"
-        >
-          {isMuted ? (
-            <CiVolumeMute fontSize={"35"} />
-          ) : (
-            <CiVolumeHigh fontSize={"35"} />
-          )}
-        </button>
       </div>
     </div>
   );
